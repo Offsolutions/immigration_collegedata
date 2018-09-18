@@ -1,0 +1,70 @@
+﻿@model IEnumerable<NewImmigration.Areas.Admin.Models.Courses>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutPage.cshtml";
+}
+
+<h2><b>Index</b></h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.College.CollegeName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Country.CountryName)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.College.CollegeName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Country.CountryName)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CoursesId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CoursesId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CoursesId })
+        </td>
+    </tr>
+}
+
+</table>

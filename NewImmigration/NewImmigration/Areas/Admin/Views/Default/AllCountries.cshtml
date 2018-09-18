@@ -1,0 +1,40 @@
+﻿@using NewImmigration.Areas.Admin.Models
+@{
+    ViewBag.Title = "AllCountries";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutPage.cshtml";
+    dbcontext db = new dbcontext();
+}
+
+<h2>AllCountries</h2>
+
+
+@using (Html.BeginForm("AllCountries", "Default", FormMethod.Post, new { name = "country", @Class = "col-md-12" }))
+{
+    <div class="form-horizontal">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Country</label>
+                <select id="session" name="country" class="form-control">
+                    <option>Select Country</option>
+                    @foreach (var ab in db.Countries)
+                    {
+                        <option value="@ab.Countryid">@ab.CountryName</option>
+                    }
+                </select>
+            </div>
+            @Html.ActionLink("Index", "Default", new { @class = "label label-info" })
+        </div>
+        </div>
+        }
+        @*<script type="text/javascript">
+
+    function onchange()
+    {
+        //Form post
+        document.country.submit();
+      //  respond("Index", "Default");
+          
+       // var Countryid = document.name;
+
+    }
+        </script>*@  

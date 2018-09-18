@@ -1,0 +1,78 @@
+﻿@model NewImmigration.Areas.Admin.Models.Country
+@using NewImmigration.Areas.Admin.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutPage.cshtml";
+    dbcontext db = new dbcontext();
+    string id = TempData["country"].ToString();
+    int contid = int.Parse(id);
+    var collg= db.Colleges.Where(x => x.Countryid == contid);
+}
+
+    @using (Html.BeginForm("Index", "Default", FormMethod.Post, new { name="country", @Class = "col-md-12" }))
+    {
+        <div class="form-horizontal">
+            @*<div class="col-md-3">
+                <div class="form-group">
+                    <label>Country</label>
+                    <select id="session" name="country" class="form-control" onchange="onchange()">
+                        <option>Select Country</option>
+                        @foreach (var ab in db.Countries)
+                        {
+                            <option value="@ab.Countryid">@ab.CountryName</option>
+                        }
+                    </select>
+                </div>
+            </div>*@
+            <div class="col-md-3">
+                <div class="form-group">
+
+                   <label>Colleges</label>
+                    <select id="session" name="college" class="form-control">
+                        <option>Select Colleges</option>
+                        @foreach (var ab in collg)
+                        {
+                            <option value="@ab.CollegeId">@ab.CollegeName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="session" name="category" class="form-control">
+                        <option>Select Category</option>
+                        @foreach (var ab in db.Categories)
+                        {
+                            <option value="@ab.Categoryid">@ab.CategoryName</option>
+                        }
+                    </select>
+                </div>
+                <input type="submit" class="btn btn-default" value="Search"  />
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Campus</label>
+                    <select id="session" name="campus" class="form-control">
+                        <option>Select Campus</option>
+                        @foreach (var ab in db.Campus)
+                        {
+                            <option value="@ab.CampusId">@ab.CampusName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+
+    }
+<script type="text/javascript">
+
+    function onchange()
+    {
+        //Form post
+        document.country.submit();
+       // var Countryid = document.name;
+      
+    }
+</script>  
