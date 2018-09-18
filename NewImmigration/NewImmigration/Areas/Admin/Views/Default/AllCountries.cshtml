@@ -1,11 +1,14 @@
 ﻿@using NewImmigration.Areas.Admin.Models
+@model IEnumerable < NewImmigration.Areas.Admin.Models.College>
 @{
     ViewBag.Title = "AllCountries";
     Layout = "~/Areas/Admin/Views/Shared/LayoutPage.cshtml";
     dbcontext db = new dbcontext();
 }
+@section Pagename {
 
-<h2>AllCountries</h2>
+    AllCountries
+}
 
 
 @using (Html.BeginForm("AllCountries", "Default", FormMethod.Post, new { name = "country", @Class = "col-md-12" }))
@@ -22,10 +25,45 @@
                     }
                 </select>
             </div>
-            @Html.ActionLink("Index", "Default", new { @class = "label label-info" })
+            <input type="submit" value="Submit" class="btn btn-danger" style="margin-top:10px" />
         </div>
         </div>
         }
+
+@using (Html.BeginForm("AllCountries", "Default", FormMethod.Post, new { name = "myform" }))
+{
+    @*@Html.AntiForgeryToken()*@
+   
+        <div class="table-responsive">
+            <h3 style="margin-left:230px;">
+               Colleges
+            </h3>
+            <table class="table table-striped table-bordered table-hover" style="margin-top:40px">
+                <thead>
+                    <tr>
+                        <td>  Sr No.</td>
+
+                        <td>College Name</td>
+
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @*<input id="Checkbox1" type="checkbox" name="departments2" value="@item.CollegeId" checked="checked" />*@
+                            @Html.DisplayFor(modelItem => item.CollegeId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CollegeName)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+}
+
+@*@Html.ActionLink("Index", "Default", new { @class = "label label-info" })*@
         @*<script type="text/javascript">
 
     function onchange()

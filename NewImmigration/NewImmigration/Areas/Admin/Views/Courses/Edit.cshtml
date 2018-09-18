@@ -4,8 +4,10 @@
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/LayoutPage.cshtml";
 }
+@section Pagename {
 
-<h2>Edit</h2>
+    Courses
+}
 
 
 @using (Html.BeginForm())
@@ -13,7 +15,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Courses</h4>
+        <h4>Edit</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.CoursesId)
